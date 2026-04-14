@@ -1,0 +1,97 @@
+ansible all -m user -a 'name= patel create_home= yes {agar creat home kaam na kare to state = present}'
+
+
+vim filename.yml/yaml
+fixed sentext
+- hosts: all
+  tasks:
+    - copy:
+       src: /srv/myfiles/foo.conf
+       dest: /etc/foo.conf
+    - yum:
+        name: nginx
+        state: present
+       
+
+===================================
+- hosts: all
+  tasks:
+    - copy: src= /srv/myfiles/foo.conf dest= /etc/foo.conf
+    - yum: name= nginx state= present
+    - user: name = singh state 
+========================================
+
+- hosts: all
+  tasks:
+    - copy: src= /srv/myfiles/foo.conf 
+            dest= /etc/foo.conf
+    - yum: name= nginx 
+           state= present
+    - user: name = singh 
+            state = present 
+
+===============================================
+
+
+
+- hosts: dev
+  tasks:
+    - copy:
+       src: /srv/myfiles/foo.conf
+       dest: /etc/foo.conf
+    - yum:
+        name: nginx
+        state: present
+
+- hosts: qa
+  tasks:
+    - yum:
+        name: nginx
+        state: present
+
+
+=====================================
+
+########variable########
+
+- hosts: all
+  vars:
+    apples: /srv/myfiles/foo.conf
+    appled: /etc/foo.conf\
+  tasks:
+    - copy:
+       src: "{{ apples }}"
+       dest: "{{ appled }}"\\\
+
+
+
+==============================================
+#####import###
+vim abcd.yml
+
+- hosts: all
+  tasks:
+    import_tasks: ttt.yml   
+ 
+
+------------
+vim ttt.yml
+     - copy:
+       src: /srv/myfiles/foo.conf
+       dest: /etc/foo.conf
+     - yum:
+        name: nginx
+        state: present
+
+
+
+ansible-playbook filename.yml(run karane ke liye)
+
+
+
+
+
+
+
+
+
